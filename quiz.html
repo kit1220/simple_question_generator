@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="utf-8">
+<title>測驗</title>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body{font-family:system-ui,sans-serif;max-width:800px;margin:2rem auto;padding:0 1rem;line-height:1.8}
+.card{border:1px solid #ccc;border-radius:8px;padding:1rem;margin:1rem 0}
+.ok{color:#0a7d2c;font-weight:bold} .bad{color:#c0392b;font-weight:bold}
+.opt{margin-left:1.5rem} .meta{color:#666}
+</style></head><body>
+<h2>測驗結果</h2><p class="meta">課程:ge2340_ai | 講義:Lecture6-AI_Security_Privacy_Ethics.md | 得分:4/5</p>
+<div class="card"><b>Q1.</b> 根據講義,現代 AI 系統常部署深度神經網路,為什麼這會增加 AI 風險?<div class="opt">A. 因為深度神經網路訓練速度太慢</div><div class="opt">B. 因為深度神經網路難以解釋,像黑盒子</div><div class="opt">C. 因為深度神經網路只能處理影像</div><div class="opt">D. 因為深度神經網路不需要資料</div><hr><span class="ok">✅ 正確</span><br>你的答案:b<br>標準答案:B<br><span class="meta">解釋:講義指出現代 AI 系統廣泛部署難以解釋、像黑盒子的深度神經網路,因此增加風險。</span></div>
+<div class="card"><b>Q2.</b> 講義中對抗樣本 \(x&#x27;\) 的定義為何?<div class="opt">A. 與 \(x\) 完全相同但標籤不同的輸入</div><div class="opt">B. 看起來幾乎與 \(x\) 相同,但 \(f(x)\) 與 \(f(x&#x27;)\) 差異很大的擾動輸入</div><div class="opt">C. 隨機產生的雜訊輸入,一定無法欺騙模型</div><div class="opt">D. 只用於訓練模型的正常輸入</div><hr><span class="ok">✅ 正確</span><br>你的答案:b<br>標準答案:B<br><span class="meta">解釋:講義定義對抗樣本為看起來幾乎與原輸入相同,但模型輸出差異很大的擾動輸入。</span></div>
+<div class="card"><b>Q3.</b> 講義中對抗擾動的生成可寫成最佳化問題 \[ \max_{\delta \in S_\epsilon(x)} L(f(x+\delta), y) \]。請說明 \(S_\epsilon(x)\) 的意義,並寫出常見以範數約束定義的 \(S_\epsilon(x)\)。<hr><span class="bad">❌ 錯誤</span><br>你的答案:perturbation set , S(x) &lt; abs(epsilon)<br>標準答案:\(S_\epsilon(x)\) 是對抗預算,表示所有允許的擾動集合;常見定義為 \(S_\epsilon(x) := \{\delta \mid \|\delta\|_p \le \epsilon\}\)。<br>回饋:學生的答案不完整：\(S_\epsilon(x)\) 是所有允許的擾動集合，常見定義是以範數約束 \(\|\delta\|_p \le \epsilon\)。學生僅寫 \(|\epsilon|\)，缺少範數、擾動 \(\delta\) 與上界 \(\epsilon\) 的關係。<br><span class="meta">解釋:講義說明 \(S_\epsilon(x)\) 為 adversarial budget,由 \(\epsilon\) 參數化,通常限制擾動範數使其不可察覺。</span></div>
+<div class="card"><b>Q4.</b> 講義中的 PGD 對抗攻擊演算法,主要用什麼方法更新擾動 \(\delta\)?<div class="opt">A. 梯度下降,最小化損失</div><div class="opt">B. 梯度上升,最大化損失,並投影回 \(S_\epsilon(x)\)</div><div class="opt">C. 隨機搜尋,不需計算梯度</div><div class="opt">D. 牛頓法,直接求解析解</div><hr><span class="ok">✅ 正確</span><br>你的答案:b<br>標準答案:B<br><span class="meta">解釋:PGD 使用梯度上升更新 \(\delta\) 以最大化損失,再將 \(\delta\) 投影回對抗預算集合 \(S_\epsilon(x)\)。</span></div>
+<div class="card"><b>Q5.</b> 講義中穩健學習 (robust learning) 的目標可寫成 \[ \min_\theta \mathbb{E}_{x \sim D} \max_{\delta \in S_\epsilon(x)} L(f(x+\delta, \theta), y) \]。請簡述其實作時的兩個主要步驟。<hr><span class="ok">✅ 正確</span><br>你的答案:max the perturbation , while optimizing parameters<br>標準答案:先產生對抗樣本,再用這些對抗樣本訓練模型參數。<br>回饋:學生答案大致正確：先對輸入做最大化擾動（產生對抗樣本），再最小化損失以優化參數 \(\theta\)，對應到 \(\min_\theta \max_{\delta\in S_\epsilon(x)} L(f(x+\delta,\theta),y)\) 的交替優化概念。<br><span class="meta">解釋:講義指出穩健學習先產生對抗樣本,然後用對抗樣本訓練模型參數。</span></div>
+</body></html>
